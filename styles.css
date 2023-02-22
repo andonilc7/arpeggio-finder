@@ -2,4 +2,43 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 1500px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 40px);
+  grid-template-rows: repeat(24, 40px);
+  align-self: center;
+  position: absolute;
+  top: 25px;
+}
+
+.fret {
+  border: 1px solid lightgrey;
+}
+
+.note-circle-container {
+  display: grid;
+  grid-template-columns: repeat(6, 13px);
+  grid-template-rows: repeat(25, 13px);
+  justify-content: space-between;
+  width: 210px;
+  height: 970px;
+  align-content: space-between;
+  position: absolute;
+  align-self: center;
+  top: 0;
+}
+
+.note-circle {
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.neck-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 25px;
 }

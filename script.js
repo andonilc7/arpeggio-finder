@@ -223,3 +223,32 @@ form.addEventListener("submit", (event) => {
     ).intervals;
   }
 });
+
+// fretboard logic
+
+let noteCircleContainer = document.querySelector(".note-circle-container");
+let noteCircles = document.getElementsByClassName("note-circle");
+
+//assigning circles to strings, use those strings to go through the chromatic scale
+let lowE = new Array();
+let aString = new Array();
+let dString = new Array();
+let gString = new Array();
+let bString = new Array();
+let highE = new Array();
+
+for (let i = 0; i < noteCircles.length; i++) {
+  if (i % 6 == 0) {
+    lowE.push(noteCircles[i]);
+  } else if (i % 6 == 1 || i == 1) {
+    aString.push(noteCircles[i]);
+  } else if (i % 6 == 2 || i == 2) {
+    dString.push(noteCircles[i]);
+  } else if (i % 6 == 3 || i == 3) {
+    gString.push(noteCircles[i]);
+  } else if (i % 6 == 4 || i == 4) {
+    bString.push(noteCircles[i]);
+  } else if (i % 6 == 5 || i == 5) {
+    highE.push(noteCircles[i]);
+  }
+}
