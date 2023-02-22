@@ -26,6 +26,18 @@ const sharpNotes = [
   "F#",
   "G",
   "G#",
+  "A",
+  "A#",
+  "B",
+  "C",
+  "C#",
+  "D",
+  "D#",
+  "E",
+  "F",
+  "F#",
+  "G",
+  "G#",
 ];
 const c = ["C", "D", "E", "F", "G", "A", "B"];
 const g = ["G", "A", "B", "C", "D", "E", "F#"];
@@ -38,6 +50,18 @@ const cSharp = ["C#", "D#", "E#", "F#", "G#", "A#", "B#"];
 
 //flats
 const flatNotes = [
+  "A",
+  "Bb",
+  "B",
+  "C",
+  "Db",
+  "D",
+  "Eb",
+  "E",
+  "F",
+  "Gb",
+  "G",
+  "Ab",
   "A",
   "Bb",
   "B",
@@ -212,15 +236,19 @@ form.addEventListener("submit", (event) => {
   let chordType = chordName.split(" ")[1];
   let chordRoot = chordName.split(" ")[0];
 
+  chromaticFindAll(chordRoot);
+
   if (chordType.length == 3) {
     chordNoteList.textContent = triadFind(chordRoot, chordType).arpeggio;
     chordIntervalList.textContent = triadFind(chordRoot, chordType).intervals;
+    noteAppear(triadFind(chordRoot, chordType).arpeggio);
   } else if ([maj7, dom7, min7, min7b5, dim7, aug7].indexOf(chordType) > -1) {
     chordNoteList.textContent = seventhChordFind(chordRoot, chordType).arpeggio;
     chordIntervalList.textContent = seventhChordFind(
       chordRoot,
       chordType
     ).intervals;
+    noteAppear(seventhChordFind(chordRoot, chordType).arpeggio);
   }
 });
 
@@ -250,5 +278,72 @@ for (let i = 0; i < noteCircles.length; i++) {
     bString.push(noteCircles[i]);
   } else if (i % 6 == 5 || i == 5) {
     highE.push(noteCircles[i]);
+  }
+}
+
+function chromaticFindAll(root) {
+  chromaticFindByString(root, lowE);
+  chromaticFindByString(root, aString);
+  chromaticFindByString(root, dString);
+  chromaticFindByString(root, gString);
+  chromaticFindByString(root, bString);
+  chromaticFindByString(root, highE);
+}
+
+function chromaticFindByString(root, string) {
+  let stringRoot;
+  if (string == lowE || string == highE) {
+    stringRoot = "E";
+  } else if (string == aString) {
+    stringRoot = "A";
+  } else if (string == dString) {
+    stringRoot = "D";
+  } else if (string == gString) {
+    stringRoot = "G";
+  } else if (string == bString) {
+    stringRoot = "B";
+  }
+
+  for (i = 0; i < string.length; i++) {
+    string[i].textContent =
+      scaleType(root)[scaleType(root).indexOf(stringRoot) + i];
+  }
+}
+
+function noteAppear(noteList) {
+  for (i = 0; i < 150; i++) {
+    noteCircles[i].style.visibility = "hidden";
+  }
+
+  for (i = 0; i < 150; i++) {
+    for (j = 0; j < noteList.length; j++) {
+      if (noteCircles[i].textContent == noteList[j]) {
+        noteCircles[i].style.visibility = "visible";
+      }
+    }
+  }
+
+  for (i = 6; i < 150; i++) {
+    for (j = 0; j < noteList.length; j++) {
+      if (
+        noteCircles[i].textContent + "b" == noteList[j] ||
+        noteCircles[i].textContent - "#" == noteList[j]
+      ) {
+        noteCircles[i - 6].textContent = noteList[j];
+        noteCircles[i - 6].style.visibility = "visible";
+      }
+    }
+  }
+
+  for (i = 0; i < 144; i++) {
+    for (j = 0; j < noteList.length; j++) {
+      if (
+        noteCircles[i].textContent + "#" == noteList[j] ||
+        noteCircles[i].textContent - "b" == noteList[j]
+      ) {
+        noteCircles[i + 6].textContent = noteList[j];
+        noteCircles[i + 6].style.visibility = "visible";
+      }
+    }
   }
 }

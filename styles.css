@@ -12,6 +12,8 @@ body {
   align-self: center;
   position: absolute;
   top: 25px;
+  width: 225px;
+  height: 970px;
 }
 
 .fret {
@@ -20,20 +22,25 @@ body {
 
 .note-circle-container {
   display: grid;
-  grid-template-columns: repeat(6, 13px);
-  grid-template-rows: repeat(25, 13px);
-  justify-content: space-between;
-  width: 210px;
+  grid-template-columns: repeat(6, 25px);
+  grid-template-rows: repeat(25, 25px);
+  /* justify-content: space-between; */
+  width: 225px;
   height: 970px;
-  align-content: space-between;
+  /* align-content: space-between; */
+  column-gap: 15px;
+  row-gap: 15px;
   position: absolute;
   align-self: center;
-  top: 0;
+  top: -8px;
+  right: -98px;
 }
 
 .note-circle {
   border: 1px solid black;
   border-radius: 50%;
+  text-align: center;
+  visibility: hidden;
 }
 
 .neck-container {
