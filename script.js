@@ -200,10 +200,19 @@ function seventhChordFind(root, type) {
 
   if (type == maj7) {
     intervals.push("7");
+    if (root == "C#") {
+      arpeggio.push("B#");
+    } else if ((root = "F#")) {
+      arperggio.push("E#");
+    }
     arpeggio.push(scaleType(root)[rootIndex + 11]);
   } else if ([dom7, min7, min7b5, aug7].indexOf(type) > -1) {
     intervals.push("b7");
-    if (
+    if (root == "C#") {
+      arpeggio.push("B");
+    } else if (root == "F#") {
+      arpeggio.push("E");
+    } else if (
       scaleType(root)[rootIndex + 10].substring(0, 1) !=
       scaleType(root)[rootIndex + 11].substring(0, 1)
     ) {
@@ -213,7 +222,11 @@ function seventhChordFind(root, type) {
     }
   } else if (type == dim7) {
     intervals.push("bb7");
-    if (scaleType(root)[rootIndex + 9].substring(1, 2) == "#") {
+    if (root == "C#") {
+      arpeggio.push("Bb");
+    } else if (root == "Fb") {
+      arpeggio.push("E");
+    } else if (scaleType(root)[rootIndex + 9].substring(1, 2) == "#") {
       arpeggio.push(scaleType(root)[rootIndex + 11].substring(0, 1) + "b");
     } else if (
       scaleType(root)[rootIndex + 9].substring(0, 1) !=
