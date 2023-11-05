@@ -202,8 +202,8 @@ function seventhChordFind(root, type) {
     intervals.push("7");
     if (root == "C#") {
       arpeggio.push("B#");
-    } else if ((root = "F#")) {
-      arperggio.push("E#");
+    } else if ((root == "F#")) {
+      arpeggio.push("E#");
     }
     arpeggio.push(scaleType(root)[rootIndex + 11]);
   } else if ([dom7, min7, min7b5, aug7].indexOf(type) > -1) {
@@ -262,7 +262,7 @@ form.addEventListener("submit", (event) => {
       chordType
     ).intervals;
     noteAppear(seventhChordFind(chordRoot, chordType).arpeggio);
-  }
+  } 
 });
 
 // fretboard logic
